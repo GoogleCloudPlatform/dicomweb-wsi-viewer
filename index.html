@@ -1,0 +1,51 @@
+<!-- Copyright 2018 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License. -->
+
+<!DOCTYPE html>
+
+<head>
+    <title>WSI DICOMWeb Viewer</title>
+
+    <link rel="stylesheet" href="viewer.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/openseadragon@2.4/build/openseadragon/openseadragon.min.js"></script>
+    <script src="viewer.js"></script>
+    <script async defer src="https://apis.google.com/js/platform.js?onload=handleClientLoad"></script>
+</head>
+
+<body>
+    <button id="sign-in-or-out-button">Sign In/Authorize</button>
+    <button id="revoke-access-button">Revoke access</button>
+
+    <div id="auth-status"></div>
+    <div class="project-id-input">
+      <label for="project"><b>Project</b></label>
+      <input type="text" id="project" placeholder="Project Name" required>
+      <input type="button" onclick=loadLocations() value='Submit'>
+    </div>
+    <div>
+      <div class="selector-container">
+        <p><b>Location</b></p>
+        <select id="locations-select" class="dicom-select" onchange="loadDatasets(this)"></select>
+        <p><b>Dataset</b></p>
+        <select id="datasets-select" class="dicom-select" onchange="loadDicomStores(this)"></select>
+        <p><b>DataStore</b></p>
+        <select id="stores-select" class="dicom-select" onchange="loadStudies(this)"></select>
+        <p><b>Study</b></p>
+        <select id="studies-select" class="dicom-select" onchange="loadInstancesInStudy(this)"></select>
+      </div>
+      <div id="openseadragon" class="map"></div>
+    </div>
+</body>
