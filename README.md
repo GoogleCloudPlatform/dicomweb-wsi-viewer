@@ -33,4 +33,4 @@ steps will bring up the viewer:
     - Add http://localhost:8000 to the Authorized JavaScript Origins & Authorized redirect URIs
     - Copy the Client ID into viewer.js
 3) Run `python -m SimpleHTTPServer 8000` from the root folder of the directory
-4) Navigate to https://localhost:8000
+4) Navigate to http://localhost:8000
