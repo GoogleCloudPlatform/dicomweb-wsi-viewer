@@ -306,8 +306,7 @@ function loadInstancesInStudy(selectPathToStudy) {
             if (viewer == null) {
               viewer = OpenSeadragon({
                 id: 'openseadragon',
-                prefixUrl: `https://cdn.jsdelivr.net/npm/openseadragon@2.4/build
-                    /openseadragon/images/`,
+                prefixUrl: `https://cdn.jsdelivr.net/npm/openseadragon@2.4/build/openseadragon/images/`,
                 navigatorSizeRatio: 0.25,
                 loadTilesWithAjax: true,
                 ajaxHeaders: {
