@@ -18,7 +18,7 @@ DICOM store and upload some sample DICOM images.
 To create DICOM WSIs you first need to get some pathology images
 (https://openslide.org/) has some test data you can use) and the convert them to
 DICOM. To convert to DICOM you can use a tool like the DICOMizer CLI from the
-[Orthanc WSI Plugin](orthanc-server.com/static.php?page=wsi).
+[Orthanc WSI Plugin](https://www.orthanc-server.com/static.php?page=wsi).
 
 ## Getting Started
 
