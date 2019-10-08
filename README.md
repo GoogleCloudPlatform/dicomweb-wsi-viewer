@@ -5,6 +5,8 @@ by a DICOMweb server. This particular tool uses the
 [Google Cloud Healthcare API](https://cloud.google.com/healthcare/) DICOMweb
 implementation.
 
+>NOTE: This viewer is only for whole slide (i.e. pathology) images. For radiology viewers that work with the Healthcare API check out Weasis (https://github.com/GoogleCloudPlatform/weasis-chcapi-extension), OHIF (https://docs.ohif.org/connecting-to-image-archives/google-cloud-healthcare.html), eUnity (https://demo.eunity.app) or IMS (https://cloudview.imstsvc.com/GoogleDemoViewer/Hub)
+
 ## Prerequisites
 
 You need to have access to the
