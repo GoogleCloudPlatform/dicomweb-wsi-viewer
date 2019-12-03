@@ -381,7 +381,7 @@ function calculatePyramidMeta(dicomInstances, sortedLevelWidths) {
 function handleClientLoad() {
   // Load the API's client and auth2 modules.
   // Call the initClient function after the modules load.
-  gapi.load('auth2', initClient);
+  gapi.load('client:auth2', initClient);
 }
 
 /**
