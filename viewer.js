@@ -55,8 +55,7 @@ let googleAuth = null;
  * @return {string} Complete url for http request.
  */
 function toDicomWebQIDOUrl(path) {
-  return updatedDicomUrl + path + '?includefield=all&access_token=' +
-      googleAuth.currentUser.get().getAuthResponse(true).access_token;
+  return updatedDicomUrl + path + '?includefield=all';
 }
 
 /**
@@ -66,8 +65,7 @@ function toDicomWebQIDOUrl(path) {
  * @return {string} Complete url for http request.
  */
 function toDicomWebWADOUrl(path) {
-  return updatedDicomUrl + path + '?access_token=' +
-      googleAuth.currentUser.get().getAuthResponse(true).access_token;
+  return updatedDicomUrl + path
 }
 
 /**
@@ -82,6 +80,9 @@ function loadLocations() {
   updatedDicomUrl = CLOUD_HEALTHCARE_API_BASE + projectId +'/locations';
   $.ajax({
     url: toDicomWebWADOUrl(''),
+    headers: {
+      "Authorization": "Bearer " + googleAuth.currentUser.get().getAuthResponse(true).access_token,
+    },
     error: function(jqXHR) {
       alert(
           'Error - retrieving location failed: ' +
@@ -121,6 +122,9 @@ function loadDatasets(selectLocation) {
   const pathToDatasets = '/' + location + '/datasets';
   $.ajax({
     url: toDicomWebWADOUrl(pathToDatasets),
+    headers: {
+      "Authorization": "Bearer " + googleAuth.currentUser.get().getAuthResponse(true).access_token,
+    },
     error: function(jqXHR) {
       alert(
           'Error - retrieving dataset failed: ' +
@@ -159,6 +163,9 @@ function loadDicomStores(selectPathToDatasets) {
   const pathToDicomStores = pathToDatasets + '/dicomStores';
   $.ajax({
     url: toDicomWebWADOUrl(pathToDicomStores),
+    headers: {
+      "Authorization": "Bearer " + googleAuth.currentUser.get().getAuthResponse(true).access_token,
+    },
     error: function(jqXHR) {
       alert(
           'Error - retrieving Dicom Store failed: ' +
@@ -196,6 +203,9 @@ function loadStudies(selectPathToDicomStore) {
   const pathToDicomStudies = pathToDicomStore + '/dicomWeb' + STUDIES_PATH;
   $.ajax({
     url: toDicomWebQIDOUrl(pathToDicomStudies),
+    headers: {
+      "Authorization": "Bearer " + googleAuth.currentUser.get().getAuthResponse(true).access_token,
+    },
     error: function(jqXHR) {
       alert(
           'Error - retrieving study failed: ' +
@@ -233,6 +243,9 @@ function loadInstancesInStudy(selectPathToStudy) {
   const seriesPath = pathToStudy + SERIES_PATH;
   $.ajax({
     url: toDicomWebQIDOUrl(seriesPath),
+    headers: {
+      "Authorization": "Bearer " + googleAuth.currentUser.get().getAuthResponse(true).access_token,
+    },
     error: function(jqXHR) {
       alert(
           'Error - retrieving series failed: ' +
@@ -244,6 +257,9 @@ function loadInstancesInStudy(selectPathToStudy) {
           series[0][SERIES_INSTANCE_UID_TAG].Value[0] + '/instances';
       $.ajax({
         url: toDicomWebQIDOUrl(instancesPath),
+    	  headers: {
+      	  "Authorization": "Bearer " + googleAuth.currentUser.get().getAuthResponse(true).access_token,
+    	  },
         error: function(jqXHR) {
           alert(
               'Error - retrieving instances failed: ' +
@@ -311,6 +327,7 @@ function loadInstancesInStudy(selectPathToStudy) {
                 loadTilesWithAjax: true,
                 ajaxHeaders: {
                   Accept: 'image/jpeg',
+                  Authorization: 'Bearer ' + googleAuth.currentUser.get().getAuthResponse(true).access_token,
                 },
                 tileSources: tileSource,
               });
